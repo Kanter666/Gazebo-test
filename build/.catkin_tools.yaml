@@ -1,0 +1,6 @@
+devel_space: /home/adam/git/Gazebo-test/devel
+install: false
+install_space: /home/adam/git/Gazebo-test/install
+profile: default
+source_space: /home/adam/git/Gazebo-test/src
+workspace: /home/adam/git/Gazebo-test
