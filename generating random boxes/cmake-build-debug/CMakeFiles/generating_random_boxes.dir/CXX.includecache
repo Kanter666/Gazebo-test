@@ -11,6 +11,10 @@ iostream
 -
 boost/filesystem.hpp
 -
+iostream
+-
+fstream
+-
 
 /usr/local/include/boost/assert.hpp
 boost/config.hpp
