@@ -1,11 +1,16 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.8)
+project(generating_random_boxes)
 
-find_package(gazebo REQUIRED)
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
-list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
+set(CMAKE_CXX_STANDARD 11)
 
-add_library(random_generator SHARED random_generator.cc)
-target_link_libraries(random_generator ${GAZEBO_LIBRARIES})
+set(SOURCE_FILES main.cpp)
+add_executable(generating_random_boxes ${SOURCE_FILES})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+find_package(Boost COMPONENTS system filesystem REQUIRED)
+IF (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIR})
+    target_link_libraries(generating_random_boxes 
+        ${Boost_FILESYSTEM_LIBRARY}
+        ${Boost_SYSTEM_LIBRARY}
+        )
+endif()

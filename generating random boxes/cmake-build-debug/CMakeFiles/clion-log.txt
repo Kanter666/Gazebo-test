@@ -1,0 +1,8 @@
+/usr/local/Cellar/cmake/3.8.2/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/adakan01/Desktop/git/Gazebo-test/generating random boxes"
+-- Boost version: 1.64.0
+-- Found the following Boost libraries:
+--   system
+--   filesystem
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/adakan01/Desktop/git/Gazebo-test/generating random boxes/cmake-build-debug
