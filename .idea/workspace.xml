@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a71c6756-92e6-40a6-b922-ddad99ddbab7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Models/my_robot/model.config" afterPath="$PROJECT_DIR$/Models/my_robot/model.config" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Models/my_robot/model.sdf" afterPath="$PROJECT_DIR$/Models/my_robot/model.sdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ModelGenerator.py" afterPath="$PROJECT_DIR$/src/ModelGenerator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +17,8 @@
       <file leaf-file-name="ModelGenerator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ModelGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="42" column="19" lean-forward="false" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+            <state relative-caret-position="398">
+              <caret line="36" column="15" lean-forward="false" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -290,8 +288,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ModelGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="42" column="19" lean-forward="false" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+        <state relative-caret-position="398">
+          <caret line="36" column="15" lean-forward="false" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

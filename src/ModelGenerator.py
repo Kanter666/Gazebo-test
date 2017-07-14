@@ -1,19 +1,12 @@
 import os
 import numpy
+import random
 
-
-def create_sdf(name, directory):
-    context = '''<?xml version='1.0'?>
-      <sdf version='1.4'>
-        <model name="'''+name+'''">
-        <static>true</static>
-          <link name='chassis'>
-            <pose>0 0 .1 0 0 0</pose>
-
-            <collision name='collision'>
+def add_box(size):
+    box = """<collision name='collision'>
               <geometry>
                 <box>
-                  <size>.4 .2 .1</size>
+                  <size>"""+str(size[0])+" "+str(size[1])+" "+str(size[2])+"""</size>
                 </box>
               </geometry>
             </collision>
@@ -21,10 +14,27 @@ def create_sdf(name, directory):
             <visual name='visual'>
               <geometry>
                 <box>
-                  <size>.4 .2 .1</size>
+                  <size>"""+str(size[0])+" "+str(size[1])+" "+str(size[2])+"""</size>
                 </box>
               </geometry>
-            </visual>
+            </visual>"""
+
+    return box
+
+def create_sdf(name, directory):
+
+    elements = ""
+    elements+= add_box([random.uniform(0, 1),random.uniform(0, 1),random.uniform(0, 1)])
+    elements+= add_box([random.uniform(0, 1),random.uniform(0, 1),random.uniform(0, 1)])
+
+    context = '''<?xml version='1.0'?>
+      <sdf version='1.4'>
+        <model name="'''+name+'''">
+        <static>true</static>
+          <link name='chassis'>
+            <pose>0 0 .1 0 0 0</pose>
+
+            '''+elements+'''
           </link>
       </model>
     </sdf>'''
