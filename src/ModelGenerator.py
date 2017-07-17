@@ -1,49 +1,48 @@
 import os
 import numpy
 import random
+from xml.etree.ElementTree import ElementTree
+from xml.etree.ElementTree import Element
+import xml.etree.ElementTree as ET
 
-def add_box(size):
-    box = """<collision name='collision'>
-              <geometry>
-                <box>
-                  <size>"""+str(size[0])+" "+str(size[1])+" "+str(size[2])+"""</size>
-                </box>
-              </geometry>
-            </collision>
 
-            <visual name='visual'>
-              <geometry>
-                <box>
-                  <size>"""+str(size[0])+" "+str(size[1])+" "+str(size[2])+"""</size>
-                </box>
-              </geometry>
-            </visual>"""
+def add_box(size, position, link_name):
+    link = Element("link")
+    link.set("name", link_name)
+    #pose = ET.SubElement(link, "pose")
+    #pose.text = " ".join(str(round(e, 2)) for e in position)
 
-    return box
+    geometry = Element("geometry")
+    box = ET.SubElement(geometry, "box")
+    size_element = ET.SubElement(box, "size")
+    size_element.text = " ".join(str(round(e, 2)) for e in size)
+
+    visual = ET.SubElement(link, "visual")
+    visual.set("name", "visual")
+    visual.append(geometry)
+
+    collision = ET.SubElement(link, "collision")
+    collision.set("name", "collision")
+    collision.append(box)
+
+    return link
 
 def create_sdf(name, directory):
 
-    elements = ""
-    elements+= add_box([random.uniform(0, 1),random.uniform(0, 1),random.uniform(0, 1)])
-    elements+= add_box([random.uniform(0, 1),random.uniform(0, 1),random.uniform(0, 1)])
+    sdf = Element("sdf")
+    sdf.set("version", "1.4")
+    model = ET.SubElement(sdf, "model")
+    model.set("name", name)
+    static = ET.SubElement(model, "static")
 
-    context = '''<?xml version='1.0'?>
-      <sdf version='1.4'>
-        <model name="'''+name+'''">
-        <static>true</static>
-          <link name='chassis'>
-            <pose>0 0 .1 0 0 0</pose>
+    for i in range(2):
+        box = add_box([random.uniform(0, 1),random.uniform(0, 1),random.uniform(0, 1)], [0, 0, .5*i], str(i))
+        model.append(box)
 
-            '''+elements+'''
-          </link>
-      </model>
-    </sdf>'''
-
-    create_file(directory+"/model.sdf", context)
+    create_file(directory+"/model.sdf", ET.tostring(sdf))
 
 def create_config(name, directory):
-    context = """<?xml version="1.0"?>
-        <model>
+    context = """<model>
           <name>"""+name.replace("_", " ")+"""</name>
           <version>1.0</version>
           <sdf version='1.4'>model.sdf</sdf>
@@ -60,7 +59,8 @@ def create_config(name, directory):
 
 
 def create_file(location_name, context):
-    numpy.savetxt(location_name, [context], fmt="%s")
+    numpy.savetxt(location_name, ["""<?xml version="1.0"?>
+    """, context], fmt="%s")
 
 def create_model(name):
 
