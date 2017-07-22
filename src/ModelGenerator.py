@@ -1,6 +1,8 @@
 import os
 import numpy
 import random
+
+from os.path import expanduser
 from xml.etree.ElementTree import ElementTree
 from xml.etree.ElementTree import Element
 import xml.etree.ElementTree as ET
@@ -23,7 +25,7 @@ def add_box(size, position, link_name):
 
     collision = ET.SubElement(link, "collision")
     collision.set("name", "collision")
-    collision.append(box)
+    collision.append(geometry)
 
     return link
 
@@ -34,6 +36,7 @@ def create_sdf(name, directory):
     model = ET.SubElement(sdf, "model")
     model.set("name", name)
     static = ET.SubElement(model, "static")
+    static.text = "1"
 
     for i in range(2):
         box = add_box([random.uniform(0, 1),random.uniform(0, 1),random.uniform(0, 1)], [0, 0, .5*i], str(i))
@@ -64,7 +67,8 @@ def create_file(location_name, context):
 
 def create_model(name):
 
-    directory = "../Models/" + name
+    home = expanduser("~")
+    directory = home+"/.gazebo/models/" + name
     if not os.path.exists(directory):
         os.makedirs(directory)
 
